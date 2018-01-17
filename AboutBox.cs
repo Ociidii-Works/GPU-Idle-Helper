@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     partial class AboutBox : Form
     {

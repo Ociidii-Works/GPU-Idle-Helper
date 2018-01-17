@@ -1,8 +1,11 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     public partial class AddFeed : Form
     {
@@ -30,8 +33,8 @@ namespace GPUIdleHelper
                 var potential_url = this.currentURLInput;
                 if (Helper.ValidateExecutableName(potential_url))
                 {
-                    MainApplication.Properties.Settings.Default.KnownGPUProcesses.Add(potential_url);
-                    MainApplication.Properties.Settings.Default.Save();
+                    TrayApp.Properties.Settings.Default.KnownGPUProcesses.Add(potential_url);
+                    TrayApp.Properties.Settings.Default.Save();
                     MenuGenerator.ContextMenus.RegenerateMenu();
                     this.Close();
                 }

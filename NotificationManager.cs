@@ -1,10 +1,13 @@
-namespace GPUIdleHelper
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+namespace TrayApp
 {
     public class NotificationManager
     {
         public static void PushNotificationToOS(string content, string title = "")
         {
-            if (!MainApplication.Properties.Settings.Default.ShowNotifications)
+            if (!TrayApp.Properties.Settings.Default.ShowNotifications)
             {
                 return;
             }

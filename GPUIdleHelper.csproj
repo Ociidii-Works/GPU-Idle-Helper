@@ -8,7 +8,7 @@
     <ProjectGuid>{F317AF2E-9704-4A2A-BDAE-B4662ED9483B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MainApplication</RootNamespace>
+    <RootNamespace>TrayApp</RootNamespace>
     <AssemblyName>GPUIdleHelper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -37,7 +37,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>GPUIdleHelper.Program</StartupObject>
+    <StartupObject>TrayApp.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\rss_icon.ico</ApplicationIcon>

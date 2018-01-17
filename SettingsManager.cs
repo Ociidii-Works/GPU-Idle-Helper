@@ -1,8 +1,11 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     public class SettingsManager
     {
@@ -13,11 +16,11 @@ namespace GPUIdleHelper
         {
             if (NeedUpgrade)
             {
-                MainApplication.Properties.Settings.Default.Upgrade();
-                MainApplication.Properties.Settings.Default.Save();
+                TrayApp.Properties.Settings.Default.Upgrade();
+                TrayApp.Properties.Settings.Default.Save();
             }
 
-            StringCollection known_processes_from_settings = MainApplication.Properties.Settings.Default.KnownGPUProcesses;
+            StringCollection known_processes_from_settings = TrayApp.Properties.Settings.Default.KnownGPUProcesses;
             StringCollection processes_list = new StringCollection();
             //NotificationManager.PushNotificationToOS("Loading processes list...");
 
@@ -62,10 +65,10 @@ namespace GPUIdleHelper
 
         public static void WriteNewProcessesList(StringCollection coll)
         {
-            MainApplication.Properties.Settings.Default.KnownGPUProcesses.Clear();
-            MainApplication.Properties.Settings.Default.KnownGPUProcesses = coll;
-            MainApplication.Properties.Settings.Default.Save();
-            MainApplication.Properties.Settings.Default.Reload();
+            TrayApp.Properties.Settings.Default.KnownGPUProcesses.Clear();
+            TrayApp.Properties.Settings.Default.KnownGPUProcesses = coll;
+            TrayApp.Properties.Settings.Default.Save();
+            TrayApp.Properties.Settings.Default.Reload();
         }
     }
 }

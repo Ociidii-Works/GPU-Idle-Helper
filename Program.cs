@@ -1,4 +1,7 @@
-﻿// Based on https://www.codeproject.com/Articles/290013/Formless-System-Tray-Application
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+// Based on https://www.codeproject.com/Articles/290013/Formless-System-Tray-Application
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +10,7 @@ using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     internal static class Helper
     {
@@ -50,7 +53,7 @@ namespace GPUIdleHelper
 
         public static void DoIdleTasks()
         {
-            if (MainApplication.Properties.Settings.Default.KillOnIdle)
+            if (TrayApp.Properties.Settings.Default.KillOnIdle)
             {
                 // NOTE: I would prefer to check the process' GPU usage but this appears to be
                 //       difficult to obtain.
@@ -59,7 +62,7 @@ namespace GPUIdleHelper
                     ProcessDestroyer.KillCompilerProcesses();
                 }
             }
-            if (MainApplication.Properties.Settings.Default.ForceOnDemandPowerPlan)
+            if (TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan)
             {
                 Integration.SetPowerPlanToOnDemand();
             }
@@ -104,7 +107,7 @@ namespace GPUIdleHelper
                     SettingsManager.LoadSettings();
 
                     // Put the icon in the system tray
-                    sTrayIcon.Icon = MainApplication.Properties.Resources.GPUIdleHelper;
+                    sTrayIcon.Icon = TrayApp.Properties.Resources.GPUIdleHelper;
                     sTrayIcon.Text = "GPUIdleHelper";
                     sTrayIcon.Visible = true;
 

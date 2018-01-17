@@ -1,9 +1,12 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     internal class Integration
     {
@@ -28,7 +31,7 @@ namespace GPUIdleHelper
                     {
                         string LinkName = startupFolder + "\\" + Program.ProductName + ".lnk";
                         File.Delete(LinkName);
-                        if (MainApplication.Properties.Settings.Default.AutomaticStartup)
+                        if (TrayApp.Properties.Settings.Default.AutomaticStartup)
                         {
                             dynamic startupEntry = shell.CreateShortcut(LinkName);
                             try

@@ -1,7 +1,10 @@
-﻿using System.Diagnostics;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     public class ProcessDestroyer
     {
@@ -9,7 +12,7 @@ namespace GPUIdleHelper
         {
             // TODO: Move to idle loop
             //compiler_processes = Helper.Convert(Properties.Settings.Default.KnownGPUProcesses);
-            foreach (string process_name in MainApplication.Properties.Settings.Default.KnownGPUProcesses)
+            foreach (string process_name in TrayApp.Properties.Settings.Default.KnownGPUProcesses)
             {
                 KillProcessByName(process_name);
             }
@@ -27,7 +30,7 @@ namespace GPUIdleHelper
                     || x.ProcessName == processToKill // Kill by app name!
                     )
                 {
-                    if (processToKill == "Dropbox" && !MainApplication.Properties.Settings.Default.KillDropbox)
+                    if (processToKill == "Dropbox" && !TrayApp.Properties.Settings.Default.KillDropbox)
                     {
                         continue;
                     }

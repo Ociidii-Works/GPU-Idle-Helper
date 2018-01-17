@@ -1,11 +1,14 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace GPUIdleHelper
+namespace TrayApp
 {
     public class TrackedToolStripMenuItem
     {
@@ -90,11 +93,11 @@ namespace GPUIdleHelper
                 // Regenerate a new list with the current settings.
                 List<bool> menu_items_enabled = new List<bool>()
                 {
-                    MainApplication.Properties.Settings.Default.ShowNotifications,
-                    MainApplication.Properties.Settings.Default.AutomaticStartup,
-                    MainApplication.Properties.Settings.Default.KillOnIdle,
-                    MainApplication.Properties.Settings.Default.KillDropbox,
-                    MainApplication.Properties.Settings.Default.ForceOnDemandPowerPlan,
+                    TrayApp.Properties.Settings.Default.ShowNotifications,
+                    TrayApp.Properties.Settings.Default.AutomaticStartup,
+                    TrayApp.Properties.Settings.Default.KillOnIdle,
+                    TrayApp.Properties.Settings.Default.KillDropbox,
+                    TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan,
                 };
 
                 for (int i = 0; i < menu_names.Count; i++)
@@ -106,7 +109,7 @@ namespace GPUIdleHelper
                     // TODO: Still need to avoid rebuilding the menu every time the menu changes
                     if (menu_items_enabled[i])
                     {
-                        LoopItem.Image = MainApplication.Properties.Resources.checkmark;
+                        LoopItem.Image = TrayApp.Properties.Resources.checkmark;
                     }
 
                     Program.sTrayIcon.ContextMenuStrip.Items.Add(LoopItem);
@@ -122,26 +125,26 @@ namespace GPUIdleHelper
                 // Add one entry to this menu to kill everything
                 var item = new TrackedToolStripMenuItem();
                 item.Value.Text = "Force Idle Now!";
-                item.Value.Image = MainApplication.Properties.Resources.Rss;
+                item.Value.Image = TrayApp.Properties.Resources.Rss;
                 item.Value.Click += delegate (object sender, EventArgs e) { Kill_Click(sender, e); };
 
                 Program.sTrayIcon.ContextMenuStrip.Items.Add(item.Value);
 
                 item = new TrackedToolStripMenuItem();
                 item.Value.Text = "Add Executable";
-                item.Value.Image = MainApplication.Properties.Resources.Plus;
+                item.Value.Image = TrayApp.Properties.Resources.Plus;
                 item.Value.Click += delegate (object sender, EventArgs e) { AddExecutable(sender, e); };
                 Program.sTrayIcon.ContextMenuStrip.Items.Add(item.Value);
 
                 item = new TrackedToolStripMenuItem();
                 item.Value.Text = "About";
-                item.Value.Image = MainApplication.Properties.Resources.About;
+                item.Value.Image = TrayApp.Properties.Resources.About;
                 item.Value.Click += delegate (object sender, EventArgs e) { About_Click(sender, e); };
                 Program.sTrayIcon.ContextMenuStrip.Items.Add(item.Value);
 
                 item = new TrackedToolStripMenuItem();
                 item.Value.Text = "Exit";
-                item.Value.Image = MainApplication.Properties.Resources.Exit;
+                item.Value.Image = TrayApp.Properties.Resources.Exit;
                 item.Value.Click += delegate (object sender, EventArgs e) { Exit_Click(sender, e); };
                 Program.sTrayIcon.ContextMenuStrip.Items.Add(item.Value);
                 /// end ----------------------------------------------------------------------------------
@@ -242,8 +245,8 @@ namespace GPUIdleHelper
             private static void KillDropbox_Click(object sender, EventArgs e)
             {
                 // TODO: Shouldn't we use the event data?
-                MainApplication.Properties.Settings.Default.KillDropbox = !MainApplication.Properties.Settings.Default.KillDropbox;
-                MainApplication.Properties.Settings.Default.Save();
+                TrayApp.Properties.Settings.Default.KillDropbox = !TrayApp.Properties.Settings.Default.KillDropbox;
+                TrayApp.Properties.Settings.Default.Save();
                 RegenerateMenu();
             }
 
@@ -257,8 +260,8 @@ namespace GPUIdleHelper
             private static void KillOnIdle_Click(object sender, EventArgs e)
             {
                 // TODO: Shouldn't we use the event data?
-                MainApplication.Properties.Settings.Default.KillOnIdle = !MainApplication.Properties.Settings.Default.KillOnIdle;
-                MainApplication.Properties.Settings.Default.Save();
+                TrayApp.Properties.Settings.Default.KillOnIdle = !TrayApp.Properties.Settings.Default.KillOnIdle;
+                TrayApp.Properties.Settings.Default.Save();
                 RegenerateMenu();
             }
 
@@ -272,8 +275,8 @@ namespace GPUIdleHelper
             private static void Notification_Setting_Click(object sender, EventArgs e)
             {
                 // Flipping here can cause bugs, be more explicit so that the value is always right.
-                MainApplication.Properties.Settings.Default.ShowNotifications = !MainApplication.Properties.Settings.Default.ShowNotifications;
-                MainApplication.Properties.Settings.Default.Save();
+                TrayApp.Properties.Settings.Default.ShowNotifications = !TrayApp.Properties.Settings.Default.ShowNotifications;
+                TrayApp.Properties.Settings.Default.Save();
                 RegenerateMenu();
             }
 
@@ -286,8 +289,8 @@ namespace GPUIdleHelper
             /// </param>
             private static void Set_Power_Plan_Click(object sender, EventArgs e)
             {
-                MainApplication.Properties.Settings.Default.ForceOnDemandPowerPlan = !MainApplication.Properties.Settings.Default.ForceOnDemandPowerPlan;
-                MainApplication.Properties.Settings.Default.Save();
+                TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan = !TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan;
+                TrayApp.Properties.Settings.Default.Save();
                 RegenerateMenu();
             }
 
@@ -300,8 +303,8 @@ namespace GPUIdleHelper
             /// </param>
             private static void Startup_Click(object sender, EventArgs e)
             {
-                MainApplication.Properties.Settings.Default.AutomaticStartup = !MainApplication.Properties.Settings.Default.AutomaticStartup;
-                MainApplication.Properties.Settings.Default.Save();
+                TrayApp.Properties.Settings.Default.AutomaticStartup = !TrayApp.Properties.Settings.Default.AutomaticStartup;
+                TrayApp.Properties.Settings.Default.Save();
                 RegenerateMenu();
                 Integration.AddToStartup();
             }

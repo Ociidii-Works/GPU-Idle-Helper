@@ -1,4 +1,4 @@
-﻿namespace GPUIdleHelper
+﻿namespace TrayApp
 {
     partial class AddFeed
     {

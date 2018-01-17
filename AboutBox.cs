@@ -1,4 +1,7 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -16,8 +19,6 @@ namespace TrayApp
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
         }
-
-        #region Assembly Attribute Accessors
 
         public string AssemblyCompany
         {
@@ -95,7 +96,5 @@ namespace TrayApp
                 return Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
         }
-
-        #endregion Assembly Attribute Accessors
     }
 }

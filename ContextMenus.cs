@@ -126,14 +126,14 @@ namespace TrayApp
                 var item = new TrackedToolStripMenuItem();
                 item.Value.Text = "Force Idle Now!";
                 item.Value.Image = TrayApp.Properties.Resources.Rss;
-                item.Value.Click += delegate (object sender, EventArgs e) { Kill_Click(sender, e); };
+                item.Value.Click += delegate (object sender, EventArgs e) { MainAction_Click(sender, e); };
 
                 Program.sTrayIcon.ContextMenuStrip.Items.Add(item.Value);
 
                 item = new TrackedToolStripMenuItem();
                 item.Value.Text = "Add Executable";
                 item.Value.Image = TrayApp.Properties.Resources.Plus;
-                item.Value.Click += delegate (object sender, EventArgs e) { AddExecutable(sender, e); };
+                item.Value.Click += delegate (object sender, EventArgs e) { AddItem(sender, e); };
                 Program.sTrayIcon.ContextMenuStrip.Items.Add(item.Value);
 
                 item = new TrackedToolStripMenuItem();
@@ -165,7 +165,7 @@ namespace TrayApp
             /// <param name="e">
             /// The <see cref="System.EventArgs" /> instance containing the event data.
             /// </param>
-            public static void Kill_Click(object sender, EventArgs e)
+            public static void MainAction_Click(object sender, EventArgs e)
             {
                 Program.DoIdleTasks();
             }
@@ -199,7 +199,7 @@ namespace TrayApp
             /// <param name="e">
             /// The <see cref="System.EventArgs" /> instance containing the event data.
             /// </param>
-            private static void AddExecutable(object sender, EventArgs e)
+            private static void AddItem(object sender, EventArgs e)
             {
                 new AddFeed().ShowDialog();
             }

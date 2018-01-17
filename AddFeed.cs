@@ -31,7 +31,7 @@ namespace TrayApp
             try
             {
                 var potential_url = this.currentURLInput;
-                if (Helper.ValidateExecutableName(potential_url))
+                if (Helper.ValidateInput(potential_url))
                 {
                     TrayApp.Properties.Settings.Default.KnownGPUProcesses.Add(potential_url);
                     TrayApp.Properties.Settings.Default.Save();
@@ -52,7 +52,7 @@ namespace TrayApp
             //{
             //    text += ".exe";
             //}
-            can_add = Helper.ValidateExecutableName(text);
+            can_add = Helper.ValidateInput(text);
             if (can_add)
             {
                 textBox1.BackColor = Color.Empty;

@@ -26,7 +26,7 @@ namespace TrayApp
 
             foreach (string url_iter in known_processes_from_settings)
             {
-                bool success = Helper.ValidateExecutableName(url_iter);
+                bool success = Helper.ValidateInput(url_iter);
 
                 if (success)
                 {

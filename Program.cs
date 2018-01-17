@@ -34,7 +34,7 @@ namespace TrayApp
             return collection;
         }
 
-        public static bool ValidateExecutableName(string url)
+        public static bool ValidateInput(string url)
         {
             return !url.EndsWith(".exe");
         }

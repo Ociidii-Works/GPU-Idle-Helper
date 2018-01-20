@@ -63,8 +63,9 @@ namespace TrayApp
         {
             Process powercfgProcess = new Process
             {
-                StartInfo = PowerCfgStartInfo
+                StartInfo = PowerCfgStartInfo,
             };
+            powercfgProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             powercfgProcess.Start();
         }
     }

@@ -8,7 +8,7 @@ namespace TrayApp
 {
     public class ProcessDestroyer
     {
-        public static void KillCompilerProcesses()
+        public static void KillBadProcesses()
         {
             // TODO: Move to idle loop
             //compiler_processes = Helper.Convert(Properties.Settings.Default.KnownGPUProcesses);

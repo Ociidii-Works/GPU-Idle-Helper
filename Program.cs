@@ -61,7 +61,7 @@ namespace TrayApp
                 //       difficult to obtain.
                 //if (CPUStats.currentCPUUsage < 30.0)
                 {
-                    ProcessDestroyer.KillCompilerProcesses();
+                    ProcessDestroyer.KillBadProcesses();
                 }
             }
             if (TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan)

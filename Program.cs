@@ -43,13 +43,15 @@ namespace TrayApp
     internal static class Program
     {
         public static bool isTimerRunning = false;
-
         public static string ProductName = ((AssemblyProductAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), true)[0]).Product;
 
         /// <summary>
         /// Static instance of the Tray Icon
         /// </summary>
         public static NotifyIcon sTrayIcon = new NotifyIcon();
+
+        private static System.Timers.Timer gTimer;
+        private static Stopwatch stopWatch;
 
         public static void DoIdleTasks()
         {
@@ -64,6 +66,7 @@ namespace TrayApp
             }
             if (TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan)
             {
+                // FIXME: This spawns a command window
                 Integration.SetPowerPlanToOnDemand();
             }
         }
@@ -78,7 +81,11 @@ namespace TrayApp
 
         public static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            DoIdleTasks();
+            // TODO: check for user input
+            if (stopWatch.Elapsed.Minutes >= 30)
+            {
+                DoIdleTasks();
+            }
         }
 
         /// <summary>
@@ -97,12 +104,9 @@ namespace TrayApp
                     Application.EnableVisualStyles();
                     //Application.SetCompatibleTextRenderingDefault(true);
 
-                    System.Timers.Timer aTimer = new System.Timers.Timer();
-                    aTimer.Elapsed += Program.OnTimedEvent;
-                    aTimer.Interval = 1000 * 7200; // 120 minutes
-                    aTimer.Enabled = true;
-                    Stopwatch sw = Stopwatch.StartNew();
-                    isTimerRunning = true;
+                    // Attach a context menu.
+                    MenuGenerator.ContextMenus.RegenerateMenu();
+                    stopWatch = Stopwatch.StartNew();
 
                     SettingsManager.LoadSettings();
 
@@ -111,8 +115,12 @@ namespace TrayApp
                     sTrayIcon.Text = "GPUIdleHelper";
                     sTrayIcon.Visible = true;
 
-                    // Attach a context menu.
-                    MenuGenerator.ContextMenus.RegenerateMenu();
+                    gTimer = new System.Timers.Timer();
+                    gTimer.Interval = 5000; // 5 seconds
+                    gTimer.Elapsed += Program.OnTimedEvent;
+                    gTimer.Enabled = true;
+
+                    isTimerRunning = true;
 
                     // Make sure the application runs!
                     Application.Run();

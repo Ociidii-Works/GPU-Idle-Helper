@@ -84,6 +84,7 @@ namespace TrayApp
             // TODO: check for user input
             if (stopWatch.Elapsed.Minutes >= 30)
             {
+                stopWatch.Reset();
                 DoIdleTasks();
             }
         }

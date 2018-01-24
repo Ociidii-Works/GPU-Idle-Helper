@@ -3,11 +3,9 @@
 
 // Based on https://www.codeproject.com/Articles/290013/Formless-System-Tray-Application
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
-using System.Timers;
 using System.Windows.Forms;
 
 namespace TrayApp

@@ -50,11 +50,11 @@ namespace TrayApp
         /// </summary>
         public static NotifyIcon sTrayIcon = new NotifyIcon();
 
-        private static System.Timers.Timer gTimer;
         private static Stopwatch stopWatch;
 
         public static void DoIdleTasks()
         {
+            stopWatch.Reset();
             if (TrayApp.Properties.Settings.Default.KillOnIdle)
             {
                 // NOTE: I would prefer to check the process' GPU usage but this appears to be
@@ -79,12 +79,11 @@ namespace TrayApp
                 System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
 
-        public static void OnTimedEvent(object sender, ElapsedEventArgs e)
+        public static void OnTimedEvent(Object state)
         {
             // TODO: check for user input
             if (stopWatch.Elapsed.Minutes >= 30)
             {
-                stopWatch.Reset();
                 DoIdleTasks();
             }
         }
@@ -116,10 +115,11 @@ namespace TrayApp
                     sTrayIcon.Text = "GPUIdleHelper";
                     sTrayIcon.Visible = true;
 
-                    gTimer = new System.Timers.Timer();
-                    gTimer.Interval = 5000; // 5 seconds
-                    gTimer.Elapsed += Program.OnTimedEvent;
-                    gTimer.Enabled = true;
+                    // Create an AutoResetEvent to signal the timeout threshold in the
+                    // timer callback has been reached.
+                    var autoEvent = new AutoResetEvent(false);
+
+                    System.Threading.Timer gTimer = new System.Threading.Timer(OnTimedEvent, autoEvent, 0, 5000);
 
                     isTimerRunning = true;
 

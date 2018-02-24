@@ -20,8 +20,8 @@ namespace TrayApp
                 TrayApp.Properties.Settings.Default.Save();
             }
 
-            StringCollection known_processes_from_settings = TrayApp.Properties.Settings.Default.KnownGPUProcesses;
-            StringCollection processes_list = new StringCollection();
+            List<string> known_processes_from_settings = TrayApp.Properties.Settings.Default.KnownGPUProcesses;
+            List<string> processes_list = new List<string>();
             //NotificationManager.PushNotificationToOS("Loading processes list...");
 
             foreach (string url_iter in known_processes_from_settings)
@@ -41,7 +41,8 @@ namespace TrayApp
 
             // Must be saved after the foreach loop to prevent overwriting the working data
             SettingsManager.WriteNewProcessesList(processes_list);
-            List<string> processes_list_real = Helper.Convert(processes_list);
+            //List<string> processes_list_real = Helper.Convert(processes_list);
+            List<string> processes_list_real = processes_list;
             string first = processes_list_real.First();
             string last = processes_list_real.Last();
             string processes_list_string = "";
@@ -63,7 +64,7 @@ namespace TrayApp
             NotificationManager.PushNotificationToOS("Processes that will be killed: " + processes_list_string);
         }
 
-        public static void WriteNewProcessesList(StringCollection coll)
+        public static void WriteNewProcessesList(List<string> coll)
         {
             TrayApp.Properties.Settings.Default.KnownGPUProcesses.Clear();
             TrayApp.Properties.Settings.Default.KnownGPUProcesses = coll;

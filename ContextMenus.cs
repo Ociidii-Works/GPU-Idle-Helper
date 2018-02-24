@@ -234,7 +234,7 @@ namespace TrayApp
             {
                 try
                 {
-                    ProcessDestroyer.KillProcessByName(u);
+                    ProcessDestroyer.KillProcessByName(new List<string>() { u });
                 }
                 catch (Exception ex)
                 {

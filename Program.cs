@@ -59,7 +59,7 @@ namespace TrayApp
                 //       difficult to obtain.
                 //if (CPUStats.currentCPUUsage < 30.0)
                 {
-                    ProcessDestroyer.KillBadProcesses();
+                    ProcessDestroyer.KillProcessByName(TrayApp.Properties.Settings.Default.KnownGPUProcesses);
                 }
             }
             if (TrayApp.Properties.Settings.Default.ForceOnDemandPowerPlan)

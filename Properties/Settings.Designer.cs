@@ -38,9 +38,9 @@ namespace TrayApp.Properties {
   <string>Store</string>
   <string>Xbox</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection KnownGPUProcesses {
+        public global::System.Collections.Generic.List<string> KnownGPUProcesses {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["KnownGPUProcesses"]));
+                return ((global::System.Collections.Generic.List<string>)(this["KnownGPUProcesses"]));
             }
             set {
                 this["KnownGPUProcesses"] = value;

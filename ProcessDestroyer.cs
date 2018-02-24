@@ -44,7 +44,7 @@ namespace TrayApp
                     {
                         continue;
                     }
-                    Console.WriteLine("Killing" + rName);
+                    Console.WriteLine("Killing " + rName);
                     try
                     {
                         rProcess.Kill();
